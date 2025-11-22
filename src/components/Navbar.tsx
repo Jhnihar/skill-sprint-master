@@ -15,28 +15,36 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="border-b border-border bg-card">
+    <nav className="border-b border-border/50 bg-white/70 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-primary">
-            <GraduationCap className="h-6 w-6" />
-            <span>Skill Sprint</span>
+          <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold group">
+            <div className="bg-gradient-to-br from-primary to-secondary p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
+              <GraduationCap className="h-6 w-6 text-white" />
+            </div>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Skill Sprint
+            </span>
           </Link>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Link to="/dashboard">
-              <Button variant="ghost" className="gap-2">
+              <Button variant="ghost" className="gap-2 hover:bg-primary/10 hover:text-primary transition-colors">
                 <LayoutDashboard className="h-4 w-4" />
                 Dashboard
               </Button>
             </Link>
             <Link to="/jobs">
-              <Button variant="ghost" className="gap-2">
+              <Button variant="ghost" className="gap-2 hover:bg-secondary/10 hover:text-secondary transition-colors">
                 <Briefcase className="h-4 w-4" />
                 Jobs
               </Button>
             </Link>
-            <Button variant="ghost" className="gap-2" onClick={handleLogout}>
+            <Button 
+              variant="ghost" 
+              className="gap-2 hover:bg-destructive/10 hover:text-destructive transition-colors" 
+              onClick={handleLogout}
+            >
               <LogOut className="h-4 w-4" />
               Logout
             </Button>

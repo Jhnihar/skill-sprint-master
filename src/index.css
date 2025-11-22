@@ -8,41 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
+    --background: 220 25% 97%;
+    --foreground: 215 30% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 215 30% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 215 30% 12%;
 
-    --primary: 180 65% 45%;
+    --primary: 180 75% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 15% 92%;
-    --secondary-foreground: 215 25% 15%;
+    --secondary: 270 60% 65%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 15% 95%;
+    --muted: 210 20% 94%;
     --muted-foreground: 215 15% 45%;
 
-    --accent: 25 95% 55%;
+    --accent: 320 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 180 65% 45%;
+    --border: 210 25% 90%;
+    --input: 210 25% 90%;
+    --ring: 180 75% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --skill-python: 210 80% 55%;
-    --skill-javascript: 45 100% 50%;
-    --skill-html: 15 85% 55%;
-    --skill-css: 210 70% 55%;
-    --skill-java: 0 75% 50%;
+    --skill-python: 210 90% 60%;
+    --skill-javascript: 45 100% 55%;
+    --skill-html: 15 95% 60%;
+    --skill-css: 250 85% 65%;
+    --skill-java: 0 85% 60%;
+    
+    --gradient-1: linear-gradient(135deg, hsl(180, 75%, 50%) 0%, hsl(270, 70%, 60%) 100%);
+    --gradient-2: linear-gradient(135deg, hsl(320, 85%, 60%) 0%, hsl(45, 100%, 55%) 100%);
+    --gradient-3: linear-gradient(135deg, hsl(210, 90%, 60%) 0%, hsl(180, 75%, 50%) 100%);
   }
 
   .dark {
@@ -83,5 +87,75 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(220, 25%, 97%) 0%, hsl(200, 30%, 95%) 50%, hsl(250, 20%, 96%) 100%);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .hover-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-glow:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: white;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, hsl(180, 75%, 50%), hsl(270, 70%, 60%), hsl(320, 85%, 60%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .cursor-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cursor-glow::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(180, 75, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+  }
+  
+  .cursor-glow:hover::after {
+    opacity: 1;
   }
 }
