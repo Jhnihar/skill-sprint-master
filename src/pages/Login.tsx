@@ -31,25 +31,16 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4 relative overflow-hidden">
-      {/* Animated background gradient orbs */}
-      <div className="fixed top-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="fixed bottom-20 right-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-      <div className="fixed top-1/2 right-1/3 w-64 h-64 bg-accent/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-      
-      <Card className="w-full max-w-md relative z-10 hover-glow backdrop-blur-sm bg-white/90">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-2 text-2xl font-bold">
-              <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-xl animate-pulse-glow">
-                <GraduationCap className="h-8 w-8 text-white" />
-              </div>
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Skill Sprint
-              </span>
+            <div className="flex items-center gap-2 text-2xl font-bold text-primary">
+              <GraduationCap className="h-8 w-8" />
+              <span>Skill Sprint</span>
             </div>
           </div>
-          <CardTitle className="text-2xl">Welcome Back</CardTitle>
+          <CardTitle>Welcome Back</CardTitle>
           <CardDescription>Sign in to continue your learning journey</CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,7 +54,6 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="transition-all focus:ring-2 focus:ring-primary/50"
               />
             </div>
             <div className="space-y-2">
@@ -75,16 +65,15 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="transition-all focus:ring-2 focus:ring-primary/50"
               />
             </div>
-            <Button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all">
+            <Button type="submit" className="w-full">
               Sign In
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
             <span className="text-muted-foreground">Don't have an account? </span>
-            <Link to="/signup" className="text-primary hover:underline font-medium hover:text-secondary transition-colors">
+            <Link to="/signup" className="text-primary hover:underline font-medium">
               Sign up
             </Link>
           </div>
