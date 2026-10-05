@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
+# Skill Sprint Master
 
-## Project info
+Build a full-stack web app called "Skill Sprint" using Next.js (App Router) and TailwindCSS, with simple placeholder backend services (static JSON). The app must include authentication (via localStorage), protected routes, skill assessments, adaptive testing, and a jobs page. Use clean, minimal UI.
 
-**URL**: https://lovable.dev/projects/553a1835-6967-4e77-899d-7516ab2af5ef
+Pages to Create
+1. /login
 
-## How can I edit this code?
+Fields: email, password
 
-There are several ways of editing your application.
+Fake login: store {id, name, email} in localStorage
 
-**Use Lovable**
+Redirect to /dashboard
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/553a1835-6967-4e77-899d-7516ab2af5ef) and start prompting.
+2. /signup
 
-Changes made via Lovable will be committed automatically to this repo.
+Fields: name, email, password
 
-**Use your preferred IDE**
+Store user in localStorage
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Redirect to /dashboard
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3. /dashboard
 
-Follow these steps:
+Show: “Welcome, {username}”
+
+Display 5 skill cards: Python, JavaScript, HTML, CSS, Java
+
+Clicking any skill → navigate to /skill/:skill/pretest
+
+4. /skill/:skill/pretest
+
+Load MCQs using placeholder function getPreTest(skill)
+
+Show all MCQs (static data)
+
+On submit → redirect to /skill/:skill/learn
+
+5. /skill/:skill/learn
+
+Call getLearning(skill, userId)
+
+Show:
+
+Weak topics
+
+Resource links
+
+Button “Start Test” → /skill/:skill/test
+
+6. /skill/:skill/test
+
+Show one adaptive question at a time
+
+Use:
+
+getAdaptiveQuestion(skill, level)
+
+submitAdaptiveAnswer(skill, questionId, isCorrect)
+
+If API returns endTest = true, redirect back to /skill/:skill/learn
+
+Otherwise load next question
+
+7. /jobs
+
+Skill dropdown
+
+Call getJobs(skill)
+
+Show job cards
+
+If no results, show fallback dummy jobs
+
+Navbar
+
+Show: Dashboard | Jobs | Logout
+
+Logout clears localStorage and redirects to /login
+
+Navbar visible only when logged in
+
+Route Protection
+
+If user not in localStorage, redirect to /login for all private pages.
+
+Services Folder
+
+Create /services with placeholder API functions returning static JSON:
+
+auth.js
+
+pretest.js
+
+learning.js
+
+adaptive.js
+
+jobs.js
+
+Each function should return simple mock data (I will replace with real APIs later).
+
+UI Requirements
+
+Use TailwindCSS
+
+Clean, minimal, modern design
+
+Skill cards, MCQ cards, and job cards should be simple and uniform
+
+Responsive layout
+
+Goal
+
+Deliver a fully working prototype of Skill Sprint with routing, authentication, adaptive test flow, and job listings — all powered by placeholder data and localStorage.
+
+This project was built with [Lovable](https://lovable.dev).
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/553a1835-6967-4e77-899d-7516ab2af5ef).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/553a1835-6967-4e77-899d-7516ab2af5ef) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
